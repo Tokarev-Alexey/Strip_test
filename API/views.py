@@ -7,7 +7,11 @@ import json
 stripe.api_key = "sk_test_51MaD9mJPwivnOuu4xfFPoZPocoUK6TKIDMa84I9A7dMP9afmjMzEOO641cfNPwZMBV1JoOrT9rBGzgAZnTwKogUo00QgNg47Ko"
 
 
-def item(request, id):
+def start(request):
+    return item(request)
+
+
+def item(request, id=1):
     list = get_object_or_404(Item, pk=id)
     return render(request, 'item.html', {'list': list, 'id': id})
 
