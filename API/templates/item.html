@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+<div><h1>{{ list.name }}</h1>
+    <p>{{ list.description }}</p>
+    <p>{{ list.price }}</p>
+</div>
+<button id="buy-button" type="submit">Buy</button>
+<script>
+    var csrftoken = '{{ csrf_token }}';
+      var id = {{ list.id }};
+//    var price = {{ list.price }};
+//    var name = '{{ list.name }}';
+</script>
+    <script type="text/javascript">
+      var stripe = Stripe("pk_test_51MaD9mJPwivnOuu4dMDMNoRCdRC3MmS9yZGN5a3YuwPP4JoJiAtIuKApMibfu7vsF93LkPiqaFE3o1F0DAsGH1cM00YYoFdWiu");
+      var buyButton = document.getElementById('buy-button');
+      buyButton.addEventListener('click', function() {
+        let formData = new FormData();
+        formData.append('csrfmiddlewaretoken', csrftoken)
+        fetch(`/buy/${id}/`, {method: 'POST', body: formData})
+//        fetch(`/buy/${price}/${name}/`, {method: 'POST', body: formData})
+        .then(response => response.json())
+        .then(session => stripe.redirectToCheckout({ sessionId: session.id }))
+      });
+    </script>
+  </body>
+</html>
