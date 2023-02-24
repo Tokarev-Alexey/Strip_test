@@ -1,4 +1,4 @@
 from django.contrib import admin
-from API.models import Item
+from Start_s.models import Item
 
 admin.site.register(Item)

@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
 import stripe
-from API.models import Item
+from Start_s.models import Item
 import json
 
 stripe.api_key = "sk_test_51MaD9mJPwivnOuu4xfFPoZPocoUK6TKIDMa84I9A7dMP9afmjMzEOO641cfNPwZMBV1JoOrT9rBGzgAZnTwKogUo00QgNg47Ko"
